@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>  
+        <title>Spring Security Login</title>  
+        <link rel="stylesheet" type="text/css" href="css/estilo.css"/>
+        <script type="text/javascript">
+            
+              function  upperCase(texto){
+                 return texto = texto.toUpperCase();  
+              }
+           
+        </script>
+    </h:head>  
+    <h:body>  
+        
+        <h:panelGroup layout="block" style="width: 100%; height: 100%">
+            <h:panelGrid columns="3" style="margin: auto;position: relative;top: 20%">  
+                <h:panelGroup layout="block"  >
+                    <p:graphicImage url="img/logo/Plain-Blue-icon.png" style="width: 200px" /><br/>
+                    <h:outputText value="Cloud System" style="text-shadow: 11px 16px 2px rgba(105, 105, 105, 0.83),0px -2px 1px rgba(105, 105, 105, 0.83);
+                                  color: #fff;
+                                  font-size: 27px;position: relative;
+                                  top: -54px;
+                                  left: 24px;"/>
+                </h:panelGroup>
+                <p:separator style="width: 2px; height: 300px"/>
+                <h:form prependId="false" >  
+                    
+                    <h:panelGrid columns="2">
+
+                        <p:inputText id="j_username"  size="25"
+                                     value="#{loginBean.username}"  onkeyup="this.value=upperCase(this.value)"
+                                     required="true"/>  
+                        <p:watermark for="j_username" value="Usuário" />  
+                        <p:password id="j_password"   
+                                    value="#{loginBean.password}"  
+                                    required="true" size="25"/>  
+                        <p:watermark for="j_password" value="Senha" />  
+                        <h:commandButton action="#{loginBean.doLogin}" value="Login" style="float: right"/>  
+                        <h:outputText value=""/>
+                        <h:outputText value="erro" rendered="#{!empty param.erro}"/>
+                    </h:panelGrid>  
+                </h:form> 
+            </h:panelGrid>
+        </h:panelGroup>
+
+
+    </h:body>  
+
+</html>
+

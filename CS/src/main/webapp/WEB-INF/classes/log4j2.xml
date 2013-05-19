@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="warn" name="MyApp" packages="com">
+  <appenders>
+      
+    <File name="MyFile"  fileName="c:/novo/app.log">
+      <PatternLayout>
+        <pattern>%d %p %C{.} %m%n</pattern>
+      </PatternLayout>
+    </File>
+    <File name="MyError"   fileName="c:/novo/appError.log">
+      <PatternLayout>
+        <pattern>%d %p %C{.} %m%n</pattern>
+      </PatternLayout>
+    </File>
+  </appenders>
+  <loggers>
+    <root level="info"   >
+      <appender-ref ref="MyFile"/>
+    </root>
+    <root level="error" >
+      <appender-ref ref="MyError"/>
+    </root>
+  </loggers>
+</configuration>
