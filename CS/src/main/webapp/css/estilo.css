@@ -12,7 +12,21 @@ border-radius: 10px;
 left: 43px;}
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {color:white!important}
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {color:white!important}
+.ui-state-default, .ui-widget-content.ui-state-default, .ui-widget-header.ui-state-default {
+background-color: #666666;
+background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(134, 127, 127, 0.26)),color-stop(100%,rgba(102, 102, 102, 0)))!important;
+background: -webkit-linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
+background: -moz-linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
+background: -ms-linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
+background: -o-linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=rgba(134, 127, 127, 0.26), endColorstr=rgba(102, 102, 102, 0))!important;
+-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=rgba(134, 127, 127, 0.26), endColorstr=rgba(102, 102, 102, 0))!important;
+background: linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
+outline: 0;
+border: 1px solid rgb(51, 49, 49)!important;
+color: rgb(189, 189, 189)!important;
 
+}
 input:hover{font-weight: normal!important;}
 
 .ui-menubar .ui-menuitem-link{border-top: 1px solid rgba(204, 204, 204, 0.12);

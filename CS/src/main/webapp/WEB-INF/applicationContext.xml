@@ -11,12 +11,14 @@
    
    <http auto-config="true" access-denied-page="/erro.xhtml" >
        <intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+      
    <form-login  always-use-default-target="true" 
    login-processing-url="/j_spring_security_check"
                       login-page="/index.xhtml" 
                       default-target-url="/admin/home.xhtml" 
                       authentication-failure-url="/index.xhtml?erro=1"  />
-        <logout invalidate-session="true" logout-success-url="/index.jsf" logout-url="/logout"/>
+        <logout invalidate-session="true" logout-success-url="/index.xhtml" logout-url="/j_spring_security_logout"/>
+        
     </http>
   
     <authentication-manager>

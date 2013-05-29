@@ -89,16 +89,19 @@ div#menu ul ul span {
     padding-right: 15px;
     _padding-right: 20px;
     color: rgb(169,169,169);
+    
 
 }
 div#menu ul ul a:hover span {
     color: #fff;
     box-shadow: -3px 0px 0px rgba(255,255,255,0.3);
-    font-weight: bold;
+ 
 }
 div#menu ul ul li.last { background: none; }
 div#menu ul ul li {
     width: 100%;
+   
+
 }
 
 /* menu::level3 */
@@ -129,4 +132,3 @@ div#menu li.back .left {
     height: 44px;
     margin-right: 8px;
 }
-
