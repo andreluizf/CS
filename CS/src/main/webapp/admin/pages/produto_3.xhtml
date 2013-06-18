@@ -1,20 +1,27 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                template="../modelo.xhtml">
+                template="../modelo.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html">
     <ui:define name="centro">
-        <p:dataTable>
-            <p:column headerText="ID">
-                
-            </p:column>
-            <p:column headerText="Nome">
-                
-            </p:column>
-            <p:column headerText="CPF">
-                
-            </p:column>
-            <p:column headerText="Endereço">
-                
-            </p:column>
-        </p:dataTable>
+        <h:panelGroup layout="block" style="background: transparent!important">
+            produto 3
+            <p:dataTable>
+                <p:column headerText="ID">
+
+                </p:column>
+                <p:column headerText="Nome">
+
+                </p:column>
+                <p:column headerText="CPF">
+
+                </p:column>
+                <p:column headerText="Endereço">
+
+                </p:column>
+            </p:dataTable>
+        </h:panelGroup>
+    </ui:define>
+    <ui:define name="dialogs">
+
     </ui:define>
 </ui:composition>

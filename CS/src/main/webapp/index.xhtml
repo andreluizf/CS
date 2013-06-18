@@ -17,8 +17,6 @@
         </script>
     </h:head>  
     <h:body>  
-        <h:outputText value="#{abaController.action()}"/>
-        
         <h:panelGroup layout="block" style="width: 100%; height: 100%">
             <h:panelGrid columns="3" style="margin: auto;position: relative;top: 20%;height: 660px;">  
                 <h:panelGroup layout="block"  >
@@ -35,7 +33,7 @@
                     <h:panelGrid columns="2">
 
                         <p:inputText id="j_username"  size="25"
-                                     value="#{loginBean.username}"  onkeyup="this.value=upperCase(this.value)"
+                                     value="#{loginBean.username}"  
                                      required="true"/>  
                         <p:watermark for="j_username" value="Usuário" />  
                         <p:password id="j_password"   

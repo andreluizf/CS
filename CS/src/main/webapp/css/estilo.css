@@ -1,45 +1,64 @@
 body{background: url(../img/fundo/black-Linen.png);font-size: 11px!important}
-.ui-widget-content {border: none;background: transparent!important;color: #fff;}
+.ui-widget-content {border: none;background: transparent!important;color: white!important}
 .panelGroupTop{background:black!important;position: relative;top: -2px; height: 43px;border-bottom: 2px solid rgba(128, 128, 128, 0.3);}
 .ui-layout-unit .ui-layout-unit-content {overflow: visible}
 .panelGroupLogo {width: 220px;
-height: 97px;
-box-shadow: -2px 3px 5px rgba(150,210,210,0.5);
-position: relative;
-top: -58px;
-background: black;
-border-radius: 10px;
-left: 43px;}
+                 height: 97px;
+                 box-shadow: -2px 3px 5px rgba(150,210,210,0.5);
+                 position: relative;
+                 top: -58px;
+                 background: black;
+                 border-radius: 10px;
+                 left: 43px;}
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {color:white!important}
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {color:white!important}
 .ui-state-default, .ui-widget-content.ui-state-default, .ui-widget-header.ui-state-default {
-background-color: #666666;
-background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(134, 127, 127, 0.26)),color-stop(100%,rgba(102, 102, 102, 0)))!important;
-background: -webkit-linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
-background: -moz-linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
-background: -ms-linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
-background: -o-linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=rgba(134, 127, 127, 0.26), endColorstr=rgba(102, 102, 102, 0))!important;
--ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=rgba(134, 127, 127, 0.26), endColorstr=rgba(102, 102, 102, 0))!important;
-background: linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
-outline: 0;
-border: 1px solid rgb(51, 49, 49)!important;
-color: rgb(189, 189, 189)!important;
-
+    background-color: #666666;
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(134, 127, 127, 0.26)),color-stop(100%,rgba(102, 102, 102, 0)))!important;
+    background: -webkit-linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
+    background: -moz-linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
+    background: -ms-linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
+    background: -o-linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=rgba(134, 127, 127, 0.26), endColorstr=rgba(102, 102, 102, 0))!important;
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=rgba(134, 127, 127, 0.26), endColorstr=rgba(102, 102, 102, 0))!important;
+    background: linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
+    outline: 0;
+    border: 1px solid rgb(51, 49, 49)!important;
+    color: rgb(189, 189, 189)!important;
 }
-input:hover{font-weight: normal!important;}
+.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td {padding:0px 5px!important}
+.ui-widget-header {
+    background-color: #666666;
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(134, 127, 127, 0.26)),color-stop(100%,rgba(102, 102, 102, 0)))!important;
+    background: -webkit-linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
+    background: -moz-linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
+    background: -ms-linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
+    background: -o-linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=rgba(134, 127, 127, 0.26), endColorstr=rgba(102, 102, 102, 0))!important;
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=rgba(134, 127, 127, 0.26), endColorstr=rgba(102, 102, 102, 0))!important;
+    background: linear-gradient(rgba(134, 127, 127, 0.26),rgba(102, 102, 102, 0))!important;
+    outline: 0;
+    border: 1px solid rgb(51, 49, 49)!important;
+    color: rgb(189, 189, 189)!important;
+}
+span[class*="ui-button-text ui-c"]{padding: 3px 10px!important}
+.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td{color: white!important;border: 1px solid rgb(44,44,44);}
 
+input:hover{font-weight: normal!important;}
+input{background-color: rgba(255,255,255,1)!important}
+fieldset[class*="ui-fieldset ui-widget ui-widget-content ui-corner-all"]{border:1px solid rgb(51, 49, 49)!important}
+legend[class*="ui-fieldset-legend ui-corner-all ui-state-default"]{padding:1px 0px !important;background:none!important;border:none!important}
 .ui-menubar .ui-menuitem-link{border-top: 1px solid rgba(204, 204, 204, 0.12);
-border-bottom: 1px solid rgba(204, 204, 204, 0.12);
-margin-left: 5px;}
+                              border-bottom: 1px solid rgba(204, 204, 204, 0.12);
+                              margin-left: 5px;}
 .ui-menu .ui-menu-parent .ui-menu-child{background: rgba(0,0,0,1)!important;}
 .ui-tabs {padding:0px}
 .ui-tabs.ui-tabs-top > .ui-tabs-nav {
-padding: .2em .2em 0;
-background: transparent;
-position: relative;
-left: 268px;
-/*border-bottom: 2px solid rgba(190, 218, 226, 0.06);*/
+    padding: .2em .2em 0;
+    background: transparent!important;
+    position: relative;
+    left: 268px;
+    border: none!important;
 }
 .ui-tabs-panels{background:rgba(152, 165, 168, 0.29)}
 .ui-tabs-nav li.ui-tabs-selected {border:2px solid rgba(190, 218, 226, 0)!important; color:#fff!important;background:rgba(152, 165, 168, 0.29)!important;border: none!important;border-top-left-radius: 5px; border-top-right-radius: 21px;}
@@ -51,5 +70,19 @@ div[class*="ui-layout-unit ui-widget ui-widget-content ui-corner-all ui-layout-n
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {color:#fff!important;text-shadow: none}
 .ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a{color:rgba(255,255,255,0.8)!important;text-shadow:1px 1px 1px rgba(0,0,0,0.5)!important}
 li [class*="ui-state-default ui-corner-top tituloAba ui-state-hover"]{color:black!important;text-shadow: none!important;}
+div[class*="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top"]{border:none!important}
+.semBorda tr,.semBorda td{border:none!important;background:none!important}
+label{width: 100%!important}
+.btnDataTable{position: relative;
+              font-size: 19px!important;
+              top: 2px;
+              color: rgba(255, 255, 255, 0.93)!important;
+              padding-top: 4px;
+              padding-right: 10px;
+              border: 1px solid rgba(0, 0, 0, 0.13);
+              padding-left: 10px;
+              background: rgba(44, 44, 44, 0.46)!important;
+              border-radius: 5px;}
+
 
 

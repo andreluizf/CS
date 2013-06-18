@@ -1,21 +1,177 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                template="../../modelo.xhtml">
+                template="../../modelo.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <ui:define name="dialogs">
+        <p:remoteCommand name="dialogCliente" update="formCliente" oncomplete="novoCliente.show()" /> 
+        <p:dialog widgetVar="novoCliente" header="Novo Cliente" dynamic="true" style="background:rgba(47,47,47,1)!important;width: 520px;color:white!important" >
+            <h:form id="formCliente">
+
+                <p:remoteCommand name="loadMsg" autoRun="true" update="msgCliente" />
+                <p:messages id="msgCliente" />
+                <p:panelGrid id="panelGridCliente" styleClass="semBorda" >
+                    <p:row>
+                        <p:column>
+                            <h:outputLabel value="Tipo Pessoa:" for="nomeCliente" />
+                        </p:column>
+                        <p:column>
+                            <p:selectOneMenu value="#{clienteController.cliente.tipoPessoa}" panelStyle="background:#333!important" >
+                                <f:selectItem  itemLabel="Fisica" itemValue='F' />
+                                <f:selectItem  itemLabel="Juridica" itemValue='J' />
+                                <p:ajax event="change" process="@this" update="panelGridCliente" />
+                            </p:selectOneMenu>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column> 
+                            <h:outputLabel value="#{clienteController.cliente.tipoPessoa!='F'?'Razão Social':'Nome'}" for="nomeCliente" style="float: right;text-align: right;" />
+                        </p:column>
+                        <p:column>
+                            <p:inputText value="#{clienteController.cliente.nome}" id="nomeCliente" size="50" style="height: 17px;background:rgba(255, 255, 255,0.9)!important; color: rgba(0,0,0,0.8)!important"/>
+                        </p:column>
+                    </p:row>
+
+
+                    <p:row>
+                        <p:column > 
+                            <h:outputLabel value="#{clienteController.cliente.tipoPessoa!='F'?'CNPJ:':'CPF:'}" for="cpfCliente" style="float: right;text-align: right;" />
+
+                        </p:column>
+                        <p:column> 
+                            <p:inputMask size="20" mask="#{clienteController.cliente.tipoPessoa!='F'?'99.999.999/9999-99':'999.999.999-99'}" value="#{clienteController.cliente.cpfCnpj}" id="cpfCliente" style="height: 17px;background:rgba(255, 255, 255,0.9)!important; color: rgba(0,0,0,0.8)!important">
+                                <p:ajax event="valueChange" listener="#{clienteController.valida(clienteController.cliente.cpfCnpj)}" process="@this" update="msgCliente" />
+                            </p:inputMask>
+                            <h:outputLabel value="#{clienteController.cliente.tipoPessoa!='F'?'IE:':'RG:'}" for="rgCliente" />
+                            <p:inputText value="#{clienteController.cliente.rg}" id="rgCliente" size="23" style="height: 17px;width:#{clienteController.cliente.tipoPessoa!='F'?'183px':'176px'};background:rgba(255, 255, 255,0.9)!important; color: rgba(0,0,0,0.8)!important"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column> 
+                            <h:outputLabel value="Email" for="emailCliente" style="float: right;text-align: right;" />
+                        </p:column>
+                        <p:column> 
+                            <p:inputText value="#{clienteController.cliente.email}" id="emailCliente" size="50" style="height: 17px;background:rgba(255, 255, 255,0.9)!important; color: rgba(0,0,0,0.8)!important"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column> 
+                            <h:outputLabel value="Telefone" for="telCliente" style="float: right;text-align: right;" />
+                        </p:column>
+                        <p:column> 
+                            <p:inputMask mask="#{clienteController.maskTel.mask}"  value="#{clienteController.cliente.telefone1}" id="telCliente" size="20" style="height: 17px;background:rgba(255, 255, 255,0.9)!important; color: rgba(0,0,0,0.8)!important">
+                                <p:ajax event="valueChange" listener="#{clienteController.maskTel.setMask(clienteController.cliente.telefone1)}" process="@this" update="telCliente" />
+                            </p:inputMask>
+                            <h:outputLabel value="Celular" for="celCliente"  />
+                            <p:inputMask mask="#{clienteController.maskTel.mask}" value="#{clienteController.cliente.celular}" id="celCliente"  style="width: 156px;height: 17px;background:rgba(255, 255, 255,0.9)!important; color: rgba(0,0,0,0.8)!important">
+                                <p:ajax event="valueChange" listener="#{clienteController.maskTel.setMask(clienteController.cliente.celular)}" process="@this" update="celCliente" />
+                            </p:inputMask>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+                <p:panelGrid styleClass="semBorda" style="border:none!important" id="panelClienteEndereco">
+                    <p:messages id="msgCep" autoUpdate="true" />
+                    <p:row>
+                        <p:column > 
+                            <h:outputLabel value="CEP" for="cepCliente" style="margin-left: 51px;" />
+                        </p:column>
+                        <p:column> 
+                            <p:inputMask mask="99.999-999" value="#{clienteController.buscaCep}" id="cepCliente" style="height: 17px;background:rgba(255, 255, 255,0.9)!important; color: rgba(0,0,0,0.8)!important">
+                                <p:ajax event="change" process="@this"  />
+                            </p:inputMask>
+                            <p:commandButton value="buscar" process="@this,@parent" update="panelClienteEndereco" />
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column> 
+                            <h:outputLabel value="Endereço" for="endCliente"  style="float: right;text-align: right;"/>
+                        </p:column>
+                        <p:column> 
+                            <p:inputText value="#{clienteController.cliente.logradouro}" id="endCliente" size="38" style="height: 17px;background:rgba(255, 255, 255,0.9)!important; color: rgba(0,0,0,0.8)!important"/>
+                            <h:outputLabel value="Num" for="numCliente" />
+                            <p:inputText value="#{clienteController.cliente.numero}" id="numCliente"  style="width: 44px;eight: 17px;background:rgba(255, 255, 255,0.9)!important; color: rgba(0,0,0,0.8)!important"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column> 
+                            <h:outputLabel value="Bairro" for="bairroCliente" style="float: right;text-align: right;" />
+                        </p:column>
+                        <p:column> 
+                            <p:inputText value="#{clienteController.cliente.bairro}" id="bairroCliente" style="height: 17px;background:rgba(255, 255, 255,0.9)!important; color: rgba(0,0,0,0.8)!important"/>
+                            <h:outputLabel value="Compl" for="complCliente"  />
+                            <p:inputText value="#{clienteController.cliente.complemento}" id="complCliente" style="width: 160px;height: 17px;background:rgba(255, 255, 255,0.9)!important; color: rgba(0,0,0,0.8)!important"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column> 
+                            <h:outputLabel value="Cidade" for="cidadeCliente"  style="float: right;text-align: right;"/>
+                        </p:column>
+                        <p:column> 
+                            <p:inputText value="#{clienteController.cliente.cidade}" id="cidadeCliente" style="height: 17px;background:rgba(255, 255, 255,0.9)!important; color: rgba(0,0,0,0.8)!important"/>
+                            <h:outputLabel value="Estado" for="ufCliente"  />
+                            <p:inputText value="#{clienteController.cliente.estado}" id="ufCliente" style="width: 158px;height: 17px;background:rgba(255, 255, 255,0.9)!important; color: rgba(0,0,0,0.8)!important"/>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+                <p:commandButton value="Salvar "  actionListener="#{clienteController.clienteService.salvar(clienteController)}" process="@this,@parent" style="float: right"/>
+                <p:commandButton value="Cancelar " style="float: right" />
+            </h:form>
+
+        </p:dialog>
+
+
+    </ui:define>
     <ui:define name="centro">
-            cliente
-        <p:dataTable>
+
+        <p:fieldset legend="Buscar Cliente">
+            <p:inputText value="#{clienteController.busca}" id="buscaCliente" style="height: 17px;background:rgba(255, 255, 255,0.9)!important; color: rgba(0,0,0,0.8)!important">
+                <p:ajax event="valueChange" process="@this"   />
+            </p:inputText>
+            <p:watermark value="Busca" for="buscaCliente"/>
+            <p:commandButton value="OK"  style="background:rgba(255, 255, 255,0.24)!important;border: 1px solid #666666 !important" />
+        </p:fieldset>
+
+        <p:remoteCommand name="loadDataTableCliente" actionListener="#{clienteController.atualizar()}" update="dataTableCliente" process="@this" />
+        <p:dataTable id="dataTableCliente" value="#{clienteController.clienteService.findAllCliente()}" var="listCli" paginator="true"  paginatorPosition="top">
             <p:column headerText="ID">
-            
+                <h:outputText value="#{listCli.codCliente}"/>
             </p:column>
             <p:column headerText="Nome">
-                
+                <h:outputText value="#{listCli.nome}"/>
             </p:column>
             <p:column headerText="CPF">
-                
+                <h:outputText value="#{listCli.cpfCnpj}">
+                    <f:converter converterId="cnpjConverter" />
+                </h:outputText>
+            </p:column>
+            <p:column headerText="Telefone">
+                <h:outputText value="#{listCli.telefone1}">
+                    <f:converter converterId="telefoneConverter" />
+                </h:outputText>
+            </p:column>
+            <p:column headerText="Celular">
+                <h:outputText value="#{listCli.celular}">
+                    <f:converter converterId="telefoneConverter" />
+                </h:outputText>
+            </p:column>
+            <p:column headerText="Email">
+                <h:outputText value="#{listCli.email}"/>
             </p:column>
             <p:column headerText="Endereço">
-                
+                <h:outputText value="#{listCli.logradouro}"/>
             </p:column>
+            <p:column headerText="Editar" style="width:5px;text-align:center">
+                <p:commandLink styleClass="icon-edit icon-2x btnDataTable" process="@this" oncomplete="dialogCliente()"  actionListener="#{clienteController.setCliente(listCli)}"    />
+                   
+            </p:column>
+            <p:column headerText="Excluir" style="width:4px; text-align:center">
+                <p:commandLink styleClass="icon-remove-sign icon-2x btnDataTable"    />
+            </p:column>
+            <f:facet name="header">
+                <h:panelGroup layout="block" style="height: 30px; width: 100%">
+                    <p:commandButton value="Novo" oncomplete="novoCliente.show()" style="float: left;background:rgba(255, 255, 255,0.24)!important;border: 1px solid #666666 !important" />
+                </h:panelGroup>
+            </f:facet>
         </p:dataTable>
     </ui:define>
 </ui:composition>

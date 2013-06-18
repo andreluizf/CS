@@ -26,6 +26,8 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "cliente")
+@NamedQueries({
+    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")})
 public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -35,57 +37,67 @@ public class Cliente implements Serializable {
     private Integer codCliente;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 100)
     @Column(name = "nome")
-    private Serializable nome;
+    private String nome;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "cpf_cnpj")
-    private int cpfCnpj;
+    private String cpfCnpj;
+    @Size(max = 20)
+    @Column(name = "rg")
+    private String rg;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="E-mail inválido")//if the field contains email address consider using this annotation to enforce field validation
+    @Size(max = 100)
     @Column(name = "email")
-    private Serializable email;
+    private String email;
     @Basic(optional = false)
     @NotNull
     @Column(name = "tipo_pessoa")
-    private char tipoPessoa;
+    private char tipoPessoa='J';
+    @Size(max = 15)
     @Column(name = "telefone1")
-    private Integer telefone1;
-    @Column(name = "telefone2")
-    private Integer telefone2;
+    private String telefone1;
+    @Size(max = 15)
     @Column(name = "celular")
-    private Integer celular;
+    private String celular;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 100)
     @Column(name = "logradouro")
-    private Serializable logradouro;
+    private String logradouro;
     @Basic(optional = false)
     @NotNull
     @Column(name = "numero")
     private int numero;
+    @Size(max = 50)
     @Column(name = "bairro")
-    private Serializable bairro;
+    private String bairro;
+    @Size(max = 50)
     @Column(name = "complemento")
-    private Serializable complemento;
+    private String complemento;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "cep")
-    private int cep;
-    @Basic(optional = false)
-    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "cidade")
-    private Serializable cidade;
+    private String cidade;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 2)
     @Column(name = "estado")
     private String estado;
-    @Column(name = "status")
-    private Boolean status;
+    @Size(max = 20)
+    @Column(name = "cep")
+    private String cep;
     @Column(name = "data_cadastro")
     @Temporal(TemporalType.DATE)
     private Date dataCadastro=new Date();
     @Column(name = "data_alteracao")
     @Temporal(TemporalType.DATE)
     private Date dataAlteracao;
+    @Column(name = "status")
+    private Boolean status;
 
     public Cliente() {
     }
@@ -94,14 +106,13 @@ public class Cliente implements Serializable {
         this.codCliente = codCliente;
     }
 
-    public Cliente(Integer codCliente, Serializable nome, int cpfCnpj, char tipoPessoa, Serializable logradouro, int numero, int cep, Serializable cidade, String estado) {
+    public Cliente(Integer codCliente, String nome, String cpfCnpj, char tipoPessoa, String logradouro, int numero, String cidade, String estado) {
         this.codCliente = codCliente;
         this.nome = nome;
         this.cpfCnpj = cpfCnpj;
         this.tipoPessoa = tipoPessoa;
         this.logradouro = logradouro;
         this.numero = numero;
-        this.cep = cep;
         this.cidade = cidade;
         this.estado = estado;
     }
@@ -114,27 +125,35 @@ public class Cliente implements Serializable {
         this.codCliente = codCliente;
     }
 
-    public Serializable getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(Serializable nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public int getCpfCnpj() {
+    public String getCpfCnpj() {
         return cpfCnpj;
     }
 
-    public void setCpfCnpj(int cpfCnpj) {
+    public void setCpfCnpj(String cpfCnpj) {
         this.cpfCnpj = cpfCnpj;
     }
 
-    public Serializable getEmail() {
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(Serializable email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -146,35 +165,27 @@ public class Cliente implements Serializable {
         this.tipoPessoa = tipoPessoa;
     }
 
-    public Integer getTelefone1() {
+    public String getTelefone1() {
         return telefone1;
     }
 
-    public void setTelefone1(Integer telefone1) {
+    public void setTelefone1(String telefone1) {
         this.telefone1 = telefone1;
     }
 
-    public Integer getTelefone2() {
-        return telefone2;
-    }
-
-    public void setTelefone2(Integer telefone2) {
-        this.telefone2 = telefone2;
-    }
-
-    public Integer getCelular() {
+    public String getCelular() {
         return celular;
     }
 
-    public void setCelular(Integer celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
     }
 
-    public Serializable getLogradouro() {
+    public String getLogradouro() {
         return logradouro;
     }
 
-    public void setLogradouro(Serializable logradouro) {
+    public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;
     }
 
@@ -186,35 +197,27 @@ public class Cliente implements Serializable {
         this.numero = numero;
     }
 
-    public Serializable getBairro() {
+    public String getBairro() {
         return bairro;
     }
 
-    public void setBairro(Serializable bairro) {
+    public void setBairro(String bairro) {
         this.bairro = bairro;
     }
 
-    public Serializable getComplemento() {
+    public String getComplemento() {
         return complemento;
     }
 
-    public void setComplemento(Serializable complemento) {
+    public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
 
-    public int getCep() {
-        return cep;
-    }
-
-    public void setCep(int cep) {
-        this.cep = cep;
-    }
-
-    public Serializable getCidade() {
+    public String getCidade() {
         return cidade;
     }
 
-    public void setCidade(Serializable cidade) {
+    public void setCidade(String cidade) {
         this.cidade = cidade;
     }
 
@@ -226,12 +229,12 @@ public class Cliente implements Serializable {
         this.estado = estado;
     }
 
-    public Boolean getStatus() {
-        return status;
+    public String getCep() {
+        return cep;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
     public Date getDataCadastro() {
@@ -248,6 +251,14 @@ public class Cliente implements Serializable {
 
     public void setDataAlteracao(Date dataAlteracao) {
         this.dataAlteracao = dataAlteracao;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     @Override

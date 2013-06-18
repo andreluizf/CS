@@ -66,6 +66,14 @@
                           left: 24px;"/>
         </h:panelGroup>
         <p:layout fullPage="true" style="padding: 0px; margin: 0px;" >
+            <p:ajaxStatus style="position: absolute; top: 60px; left: 50%; z-index: 10" >
+                <f:facet name="start">
+                    <p:graphicImage url="../img/funcoes/ajax-loader.gif"/> 
+                </f:facet>
+                <f:facet name="complete">
+                    <h:outputText value="" />
+                </f:facet>
+            </p:ajaxStatus>
             <p:layoutUnit position="north" style="padding: 0px;height: 38px!important">
                 <h:panelGroup layout="block" >
                     <h:panelGroup layout="block"  styleClass="panelGroupTop" >
@@ -109,8 +117,8 @@
                                     </li>
                                     <li><a href="#"><span>Help</span></a></li>
                                     <li><a href="#"><span>Contato</span></a></li>
-                                    <li class="last"> <span> <h:outputLink value="/j_spring_security_logout">  
-                                                <h:outputText value="Sair"/>
+                                    <li class="last"> <span> <h:outputLink value="../j_spring_security_logout">  
+                                                Sair
                                             </h:outputLink></span></li>
                                     </ul>
                                 </div>
@@ -125,12 +133,13 @@
                     <h:form id="tabview">
                         <p:remoteCommand name="loadTab" process="tabview1,@parent" update="tabview1"/>
                         <p:tabView  id="tabview1"  cache="false" dynamic="true" activeIndex="#{abaController.posicao}"                                    >
-                            <p:ajax event="tabClose" listener="#{abaController.onTabClose}" update="tabview1" process="@this"/>
+                            <f:ajax event="tabClose" listener="#{abaController.onTabClose}" render="@this" />
+                            <f:ajax event="tabChange"  render="@this" execute="tabview1"/>
                             <c:forEach items="#{abaController.aba}"  var="pageUrl" >
-                                <p:tab id="tab"  closable="true" title="#{pageUrl.titulo}" titleStyleClass="tituloAba" titleStyle="box-shadow: -1px -1px 2px rgba(210,210,210,0.5)!important;border:2px solid rgba(190, 218, 226, 0)!important; color:#fff!important" >
+                                <p:tab closable="true" title="#{pageUrl.titulo}" titleStyleClass="tituloAba" titleStyle="box-shadow: -1px -1px 2px rgba(210,210,210,0.5)!important;border:2px solid rgba(190, 218, 226, 0)!important; color:#fff!important" >
                                     <ui:include src="#{pageUrl.pagina}"/>
                                 </p:tab>
-                           </c:forEach>
+                            </c:forEach>
                         </p:tabView>
                     </h:form>
                 </h:panelGroup>

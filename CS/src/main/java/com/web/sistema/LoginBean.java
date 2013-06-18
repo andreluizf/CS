@@ -34,7 +34,6 @@ public class LoginBean implements Serializable {
                 (ServletResponse) context.getResponse());
         FacesContext.getCurrentInstance().responseComplete();
         // It's OK to return null here because Faces is just going to exit.  
-        System.out.println("::::::: " + username + " -- " + password);
         logger.entry();
         logger.info("Usuario Conectado");
         logger.exit();

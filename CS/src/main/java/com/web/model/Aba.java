@@ -6,20 +6,11 @@ import java.io.Serializable;
 public class Aba implements Serializable{
     private String titulo;
     private String pagina;
-    private int posicao;
 
-    public Aba(String pagina, String titulo, int pos) {
+    public Aba(String pagina, String titulo) {
         this.titulo = titulo;
         this.pagina = pagina;
-        posicao = pos;
-    }
-
-    public int getPosicao() {
-        return posicao;
-    }
-
-    public void setPosicao(int posicao) {
-        this.posicao = posicao;
+       
     }
 
     public String getTitulo() {

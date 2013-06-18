@@ -35,7 +35,7 @@ div#menu a {
     text-decoration: none;
     font: normal 12px Trebuchet MS;
 }
-div#menu a:hover, div#menu a:hover span { color: #fff; }
+div#menu a:hover, div#menu a:hover span { color: #fff;}
 div#menu li.current a {}
 
 div#menu span {
